@@ -27,7 +27,7 @@ Teachers can create and edit lessons, clubs, and extra classes, while parents ac
 
 Clone the repo:
 ```bash
-git clone https://github.com/<your-username>/classflow.git
+git clone https://github.com/d3ad0x1/classflow.git
 cd classflow
 ```
 
