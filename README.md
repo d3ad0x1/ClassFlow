@@ -42,19 +42,6 @@ npm run dev
 
 ---
 
-## 🚀 Deployment (GitHub Pages)
-
-Build and deploy in one step:
-```bash
-npm run deploy
-```
-Your timetable will be live at:
-```bash
-https://<your-username>.github.io/classflow
-```
-
----
-
 ## 📷 Preview
 (demo screenshot placeholder — replace later)
 
