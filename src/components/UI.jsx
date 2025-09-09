@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function LangSwitcher() {
   const { i18n } = useTranslation();
@@ -14,7 +14,7 @@ export function LangSwitcher() {
     <select
       value={lang}
       onChange={(e) => changeLanguage(e.target.value)}
-      className="px-2 py-1 rounded bg-black/20 border border-white/10 text-sm"
+      className="px-2 py-1 rounded bg-black/20 dark:bg-white/10 border border-default text-sm"
     >
       <option value="en">EN</option>
       <option value="ru">RU</option>
@@ -24,9 +24,9 @@ export function LangSwitcher() {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "dark"
-  );
+  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
+  const initial = localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
+  const [theme, setTheme] = useState(initial);
 
   useEffect(() => {
     document.documentElement.classList.remove("light", "dark");
@@ -37,7 +37,8 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="px-3 py-1 rounded border border-white/10 text-sm"
+      className="px-3 py-1 rounded border border-default text-sm"
+      title="Toggle theme"
     >
       {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
     </button>

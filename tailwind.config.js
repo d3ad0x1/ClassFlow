@@ -1,16 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: "class",
-    content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
-    theme: {
-        extend: {
-            colors: {
-                primary: '#8b5cf6',
-                background: '#0f172a',
-                card: '#111827',
-                muted: '#94a3b8'
-            }
-        }
-    },
-    plugins: []
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      // Цвета через CSS-переменные => тема переключается без правок JSX
+      colors: {
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        background: "rgb(var(--color-bg) / <alpha-value>)",
+        card: "rgb(var(--color-card) / <alpha-value>)",
+        muted: "rgb(var(--color-muted) / <alpha-value>)"
+      }
+    }
+  },
+  plugins: [],
 };

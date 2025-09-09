@@ -5,6 +5,24 @@
     "teacher": "O'qituvchi",
     "share": "Telegram orqali ulashish",
     "noActivities": "Mashg'ulotlar yo'q — qo'shing.",
-    "class": "Sinf"
+    "class": "Sinf",
+    "scheduleWord": "Jadval"
+  },
+  "ui": {
+    "lessonTypes": "Mashg'ulot turlari",
+    "add": "Qo'shish",
+    "save": "Saqlash",
+    "delete": "O'chirish",
+    "copy": "Nusxa",
+    "label": "Nomi",
+    "valueId": "Qiymat (id)",
+    "color": "Rang",
+    "newType": "Yangi tur",
+    "titlePh": "Nomi (Matematika)",
+    "teacherPh": "O'qituvchi",
+    "roomPh": "Xona",
+    "type": "Tur",
+    "start": "Boshlanishi",
+    "end": "Tugashi"
   }
 }

@@ -5,6 +5,24 @@
     "teacher": "Teacher",
     "share": "Share via Telegram",
     "noActivities": "No activities — add above.",
-    "class": "Class"
+    "class": "Class",
+    "scheduleWord": "Schedule"
+  },
+  "ui": {
+    "lessonTypes": "Lesson Types",
+    "add": "Add",
+    "save": "Save",
+    "delete": "Delete",
+    "copy": "Copy",
+    "label": "Label",
+    "valueId": "Value (id)",
+    "color": "Color",
+    "newType": "New Type",
+    "titlePh": "Title (Math)",
+    "teacherPh": "Teacher",
+    "roomPh": "Room",
+    "type": "Type",
+    "start": "Start",
+    "end": "End"
   }
 }
