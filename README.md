@@ -62,6 +62,14 @@ https://<your-username>.github.io/classflow
 
 ## 🔖 GitHub Topics
 
+![react](https://img.shields.io/badge/topic-react-blue?logo=react)
+![tailwindcss](https://img.shields.io/badge/topic-tailwindcss-38B2AC?logo=tailwind-css)
+![schedule](https://img.shields.io/badge/topic-schedule-purple)
+![timetable](https://img.shields.io/badge/topic-timetable-orange)
+![education](https://img.shields.io/badge/topic-education-green)
+![school](https://img.shields.io/badge/topic-school-yellow)
+![telegram](https://img.shields.io/badge/topic-telegram-2CA5E0?logo=telegram)
+
 ---
 
 ## 📜 License
