@@ -3,10 +3,14 @@
     "title": "ClassFlow",
     "timetable": "Расписание",
     "teacher": "Учителю",
+    "admin": "Админ",
     "share": "Поделиться в Telegram",
     "noActivities": "Нет занятий — добавьте выше.",
     "class": "Класс",
-    "scheduleWord": "Расписание"
+    "scheduleWord": "Расписание",
+    "restricted": "Доступ ограничен",
+    "enterPin": "Введите PIN для продолжения.",
+    "logout": "Выйти"
   },
   "ui": {
     "lessonTypes": "Типы занятий",
@@ -23,6 +27,12 @@
     "roomPh": "Кабинет",
     "type": "Тип",
     "start": "Начало",
-    "end": "Конец"
+    "end": "Конец",
+    "name": "Имя",
+    "subject": "Предмет",
+    "groups": "Классы (через запятую)",
+    "current": "Текущий",
+    "schoolLevel": "Уровень школы",
+    "teachers": "Учителя"
   }
 }

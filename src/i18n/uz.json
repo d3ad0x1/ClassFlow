@@ -3,10 +3,14 @@
     "title": "ClassFlow",
     "timetable": "Dars jadvali",
     "teacher": "O'qituvchi",
+    "admin": "Admin",
     "share": "Telegram orqali ulashish",
     "noActivities": "Mashg'ulotlar yo'q — qo'shing.",
     "class": "Sinf",
-    "scheduleWord": "Jadval"
+    "scheduleWord": "Jadval",
+    "restricted": "Cheklangan hudud",
+    "enterPin": "Davom etish uchun PIN kiriting.",
+    "logout": "Chiqish"
   },
   "ui": {
     "lessonTypes": "Mashg'ulot turlari",
@@ -23,6 +27,12 @@
     "roomPh": "Xona",
     "type": "Tur",
     "start": "Boshlanishi",
-    "end": "Tugashi"
+    "end": "Tugashi",
+    "name": "Ism",
+    "subject": "Fan",
+    "groups": "Sinf(lar) (vergul bilan)",
+    "current": "Joriy",
+    "schoolLevel": "Maktab turi",
+    "teachers": "O'qituvchilar"
   }
 }

@@ -4,7 +4,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      // Цвета через CSS-переменные => тема переключается без правок JSX
       colors: {
         primary: "rgb(var(--color-primary) / <alpha-value>)",
         background: "rgb(var(--color-bg) / <alpha-value>)",

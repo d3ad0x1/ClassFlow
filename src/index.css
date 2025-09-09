@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LIGHT (по умолчанию) */
+/* LIGHT (default) */
 :root {
   --color-primary: 139 92 246;     /* #8b5cf6 */
   --color-bg: 248 250 252;         /* slate-50 */
@@ -26,5 +26,5 @@ body {
   color: rgb(var(--color-text));
 }
 
-/* Опционально: тонкая граница по умолчанию */
-.border-default { border-color: rgba(255,255,255,.1); }
+/* helper */
+.border-default { border-color: rgba(255,255,255,.12); }

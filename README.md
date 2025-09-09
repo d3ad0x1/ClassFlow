@@ -61,3 +61,10 @@ npm run dev
 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
+
+
+---
+
+#/ — публичная
+#/teacher — учителю
+#/admin — директор (PIN по умолчанию 4321, поменяй в AuthGate.jsx)

@@ -3,21 +3,43 @@ import { useTranslation } from 'react-i18next';
 import { nanoid } from 'nanoid';
 import LessonForm from '../components/LessonForm.jsx';
 import TypesManager from '../components/TypesManager.jsx';
-import { loadData, saveData, initData } from '../lib/storage';
+import GroupSelect from '../components/GroupSelect.jsx';
+import { loadData, saveData, initData, ensureGroupSchedule } from '../lib/storage';
 
 export default function Teacher(){
+  return <TeacherInner />;
+}
+
+function TeacherInner(){
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState(() => loadData() || initData());
+  const [data, setData] = useState(() => {
+    const loaded = loadData() || initData();
+    ensureGroupSchedule(loaded, loaded.activeGroupId);
+    return loaded;
+  });
   useEffect(()=> saveData(data), [data]);
 
-  const [selectedDate, setSelectedDate] = useState(data.days[0].date);
-  const dayIdx = data.days.findIndex(d => d.date === selectedDate);
-  const day = useMemo(() => data.days[dayIdx], [data, dayIdx]);
+  const [groupId, setGroupId] = useState(data.activeGroupId);
+  useEffect(() => {
+    setData(prev => ({ ...prev, activeGroupId: groupId }));
+  }, [groupId]);
+
+  const schedule = data.schedules[groupId];
+  const [selectedDate, setSelectedDate] = useState(schedule.days[0].date);
+  useEffect(() => {
+    // синхрон при смене класса
+    const s = data.schedules[groupId];
+    setSelectedDate(s.days[0]?.date || selectedDate);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groupId]);
+
+  const dayIdx = schedule.days.findIndex(d => d.date === selectedDate);
+  const day = useMemo(() => schedule.days[dayIdx], [schedule, dayIdx]);
 
   function upsertLesson(payload){
     setData(prev => {
       const copy = structuredClone(prev);
-      const arr = copy.days[dayIdx].lessons;
+      const arr = copy.schedules[groupId].days[dayIdx].lessons;
       if (payload.id){
         const i = arr.findIndex(x => x.id === payload.id);
         if (i >= 0) arr[i] = payload;
@@ -32,7 +54,8 @@ export default function Teacher(){
   function removeLesson(id){
     setData(prev => {
       const copy = structuredClone(prev);
-      copy.days[dayIdx].lessons = copy.days[dayIdx].lessons.filter(l => l.id !== id);
+      const arr = copy.schedules[groupId].days[dayIdx].lessons;
+      copy.schedules[groupId].days[dayIdx].lessons = arr.filter(l => l.id !== id);
       return copy;
     });
   }
@@ -46,21 +69,25 @@ export default function Teacher(){
 
   return (
     <div className="grid gap-6">
+      <div className="flex gap-3 flex-wrap items-center">
+        <GroupSelect data={data} setData={setData} value={groupId} onChange={setGroupId} />
+        <div className="ml-auto text-sm text-muted">{t('app.class')}: <b>{groupId}</b></div>
+      </div>
+
       <div className="flex gap-2 flex-wrap">
-        {data.days.map(d => (
+        {schedule.days.map(d => (
           <button key={d.date}
             onClick={() => setSelectedDate(d.date)}
             className={`px-3 py-1 rounded-full border ${selectedDate===d.date? 'border-primary':'border-default'} text-sm`}>
             {fmt(d.date)}
           </button>
         ))}
-        <div className="ml-auto text-sm text-muted">{t('app.class')}: <b>{data.group}</b></div>
       </div>
 
       <LessonForm types={data.types} onSubmit={upsertLesson} />
 
       <div className="grid gap-3">
-        {day.lessons.length ? day.lessons.map(les => (
+        {day?.lessons?.length ? day.lessons.map(les => (
           <div key={les.id} className="rounded-xl border border-default p-4 bg-card/60">
             <div className="flex items-center justify-between gap-2">
               <div>

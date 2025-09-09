@@ -3,10 +3,14 @@
     "title": "ClassFlow",
     "timetable": "Timetable",
     "teacher": "Teacher",
+    "admin": "Admin",
     "share": "Share via Telegram",
     "noActivities": "No activities — add above.",
     "class": "Class",
-    "scheduleWord": "Schedule"
+    "scheduleWord": "Schedule",
+    "restricted": "Restricted area",
+    "enterPin": "Enter PIN to continue.",
+    "logout": "Logout"
   },
   "ui": {
     "lessonTypes": "Lesson Types",
@@ -23,6 +27,12 @@
     "roomPh": "Room",
     "type": "Type",
     "start": "Start",
-    "end": "End"
+    "end": "End",
+    "name": "Name",
+    "subject": "Subject",
+    "groups": "Groups (comma)",
+    "current": "Current",
+    "schoolLevel": "School Level",
+    "teachers": "Teachers"
   }
 }

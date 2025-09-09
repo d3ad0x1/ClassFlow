@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { getAuth, setAuth } from "../lib/auth";
 
 export function LangSwitcher() {
   const { i18n } = useTranslation();
@@ -41,6 +42,20 @@ export function ThemeToggle() {
       title="Toggle theme"
     >
       {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
+    </button>
+  );
+}
+
+export function LogoutBadge() {
+  const auth = getAuth();
+  if (auth.role === 'viewer') return null;
+  return (
+    <button
+      onClick={()=>{ setAuth({role:'viewer'}); window.location.reload(); }}
+      className="px-3 py-1 rounded border border-default text-sm"
+      title={`Signed in as ${auth.role}`}
+    >
+      {`↩ ${auth.role}`}
     </button>
   );
 }

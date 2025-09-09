@@ -39,6 +39,7 @@ export default function TypesManager({ types, onChange }){
                    value={item.value} onChange={e=>update(i,{value:e.target.value})}/>
             <input className="px-3 py-2 rounded bg-black/10 dark:bg-black/20 border border-default" type="color"
                    value={item.color} onChange={e=>update(i,{color:e.target.value})}/>
+            <button onClick={()=>removeType(i)} className="hidden"></button>
             <button onClick={()=>remove(i)} className="text-xs px-3 py-2 rounded border border-red-400/40 text-red-300 hover:bg-red-400/10">
               {t('ui.delete')}
             </button>

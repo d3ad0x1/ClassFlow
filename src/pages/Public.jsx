@@ -1,17 +1,40 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { loadData, initData, saveData } from '../lib/storage';
+import { loadData, initData, saveData, ensureGroupSchedule } from '../lib/storage';
+import GroupSelect from '../components/GroupSelect.jsx';
 
 export default function Public(){
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState(() => loadData() || initData());
+  const [data, setData] = useState(() => {
+    const loaded = loadData() || initData();
+    ensureGroupSchedule(loaded, loaded.activeGroupId);
+    return loaded;
+  });
   useEffect(()=> saveData(data), [data]);
 
+  const [groupId, setGroupId] = useState(data.activeGroupId);
+  useEffect(() => {
+    setData(prev => ({ ...prev, activeGroupId: groupId }));
+  }, [groupId]);
+
+  const schedule = data.schedules[groupId];
   const url = new URL(window.location.href);
-  const initial = url.searchParams.get('date') || data.days[0].date;
+  const initial = url.searchParams.get('date') || schedule.days[0].date;
   const [selectedDate, setSelectedDate] = useState(initial);
 
-  const day = useMemo(() => data.days.find(d => d.date === selectedDate), [data, selectedDate]);
+  useEffect(() => {
+    // при смене класса сбрасываем выбранную дату на первую в расписании
+    const s = data.schedules[groupId];
+    if (s && !s.days.find(d=>d.date===selectedDate)) {
+      setSelectedDate(s.days[0]?.date || initial);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groupId]);
+
+  const day = useMemo(
+    () => schedule.days.find(d => d.date === selectedDate),
+    [schedule, selectedDate]
+  );
 
   const fmtDate = (d) =>
     new Date(d).toLocaleDateString(i18n.language, { weekday:'long', day:'2-digit', month:'2-digit' });
@@ -20,24 +43,29 @@ export default function Public(){
     const u = new URL(window.location.href);
     u.searchParams.set('date', selectedDate);
     const urlEnc = encodeURIComponent(u.toString());
-    const textEnc = encodeURIComponent(`${t('app.scheduleWord')} ${data.group} — ${fmtDate(selectedDate)}`);
+    const textEnc = encodeURIComponent(`${t('app.scheduleWord')} ${groupId} — ${fmtDate(selectedDate)}`);
     return `https://t.me/share/url?url=${urlEnc}&text=${textEnc}`;
   };
 
   return (
     <div className="space-y-6">
+      <div className="flex gap-3 flex-wrap items-center">
+        <GroupSelect data={data} setData={setData} value={groupId} onChange={setGroupId} />
+        <div className="ml-auto"></div>
+        <a href={tgHref()} target="_blank" rel="noreferrer"
+           className="px-3 py-1 rounded-full bg-primary text-white hover:opacity-90">
+          {t('app.share')}
+        </a>
+      </div>
+
       <div className="flex gap-2 flex-wrap">
-        {data.days.map(d => (
+        {schedule.days.map(d => (
           <button key={d.date}
                   onClick={() => setSelectedDate(d.date)}
                   className={`px-3 py-1 rounded-full border ${selectedDate===d.date?'border-primary':'border-default'} text-sm`}>
             {fmtDate(d.date)}
           </button>
         ))}
-        <a href={tgHref()} target="_blank" rel="noreferrer"
-           className="ml-auto px-3 py-1 rounded-full bg-primary text-white hover:opacity-90">
-          {t('app.share')}
-        </a>
       </div>
 
       <div className="grid gap-3">
