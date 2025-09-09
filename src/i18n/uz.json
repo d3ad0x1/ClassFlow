@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "ClassFlow",
+    "timetable": "Dars jadvali",
+    "teacher": "O'qituvchi",
+    "share": "Telegram orqali ulashish",
+    "noActivities": "Mashg'ulotlar yo'q — qo'shing.",
+    "class": "Sinf"
+  }
+}

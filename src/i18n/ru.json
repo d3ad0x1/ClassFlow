@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "ClassFlow",
+    "timetable": "Расписание",
+    "teacher": "Учителю",
+    "share": "Поделиться в Telegram",
+    "noActivities": "Нет занятий — добавьте выше.",
+    "class": "Класс"
+  }
+}
